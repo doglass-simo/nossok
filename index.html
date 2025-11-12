@@ -230,6 +230,42 @@
         .play-button:active {
             transform: scale(0.95);
         }
+
+        /* Responsive Adjustments */
+        @media (max-width: 1200px) {
+            h1 { font-size: 4rem; }
+            .name { font-size: 4.5rem; }
+            .message { font-size: 1.5rem; line-height: 1.8; }
+        }
+
+        @media (max-width: 992px) {
+            h1 { font-size: 3.5rem; }
+            .name { font-size: 3.8rem; }
+            .message { font-size: 1.3rem; padding: 0 20px; }
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 3rem; letter-spacing: 2px; }
+            .name { font-size: 3.2rem; letter-spacing: 4px; }
+            .message { font-size: 1.1rem; max-width: 90%; }
+        }
+
+        @media (max-width: 480px) {
+            h1 { font-size: 2.3rem; }
+            .name { font-size: 2.6rem; }
+            .message { font-size: 1rem; line-height: 1.6; }
+            .play-button {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+                bottom: 20px;
+                right: 20px;
+            }
+            .heart {
+                width: 100px;
+                height: 100px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -258,7 +294,6 @@
         const playButton = document.getElementById('playButton');
         let isPlaying = false;
 
-        // Play button toggle
         playButton.addEventListener('click', (e) => {
             e.stopPropagation();
             if (isPlaying) {
@@ -272,11 +307,8 @@
             }
         });
 
-        // Create "Happy Birthday" text on click anywhere
         document.addEventListener('click', (e) => {
-            // Don't create text if clicking the play button
             if (e.target === playButton) return;
-            
             const text = document.createElement('div');
             text.className = 'birthday-text';
             text.textContent = 'Happy Birthday!';
@@ -284,7 +316,6 @@
             text.style.top = e.clientY + 'px';
             text.style.transform = 'translate(-50%, -50%)';
             document.body.appendChild(text);
-            
             setTimeout(() => text.remove(), 2000);
         });
 
@@ -308,7 +339,6 @@
                     confetti.style.animationDelay = Math.random() * 2 + 's';
                     confetti.style.animationDuration = (Math.random() * 3 + 3) + 's';
                     document.body.appendChild(confetti);
-                    
                     setTimeout(() => confetti.remove(), 7000);
                 }, i * 80);
             }
